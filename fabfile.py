@@ -40,7 +40,7 @@ def setup_ntp():
 def setup_docker():
     run("curl -sSL https://get.docker.com/ | sudo sh")
     if not run("wget https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` -O docker-compose").failed:
-        run("sudo chmod +x docker-compose && sudo mv ./docker-compose /usr/local/binsudo chmod +x docker-compose && sudo mv ./docker-compose /usr/local/bin")
+        run("sudo chmod +x ~/docker-compose && sudo mv ~/docker-compose /usr/local/binsudo chmod +x docker-compose && sudo mv ~/docker-compose /usr/local/bin")
 
 @task
 def rsa_gen():
