@@ -68,11 +68,11 @@ def setup_ntp():
 @task
 def setup_docker():
     run("curl -sSL https://get.docker.com/ | sudo sh")
-    run('echo "DOCKER_OPTS=\"--registry-mirror=https://docker.mirrors.ustc.edu.cn\""|sudo tee -a /etc/default/docker')
+    run('echo "{\n"registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]\n}"|sudo tee -a  /etc/docker/daemon.json')
     setup_docker_compose()
 @task
 def setup_docker_compose():
-    if not run("wget https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` -O docker-compose").failed:
+    if not run("wget https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` -O docker-compose").failed:
         run("sudo chmod +x ~/docker-compose && sudo mv ~/docker-compose /usr/local/binsudo chmod +x docker-compose && sudo mv ~/docker-compose /usr/local/bin")
 
 @task
